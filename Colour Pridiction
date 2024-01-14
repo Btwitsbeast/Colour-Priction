@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Prediction Game</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #colorBox {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #000;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="colorBox"></div>
+    <label for="colorInput">Predict the Color:</label>
+    <input type="color" id="colorInput">
+    <button onclick="checkPrediction()">Check Prediction</button>
+    <p id="result"></p>
+
+    <script>
+        // Generate a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Set the initial color
+        document.getElementById('colorBox').style.backgroundColor = getRandomColor();
+
+        // Check user prediction
+        function checkPrediction() {
+            const predictedColor = document.getElementById('colorInput').value;
+            const actualColor = document.getElementById('colorBox').style.backgroundColor;
+
+            if (predictedColor === actualColor) {
+                document.getElementById('result').textContent = 'Correct prediction! 🎉';
+            } else {
+                document.getElementById('result').textContent = 'Try again! ❌';
+            }
+        }
+    </script>
+</body>
+</html>
 
